@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>StandingRock</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta property="og:title" content="StandingRock" />
+    <meta property="og:url" content="http://rawgit.com/cartobaldrica/water_atlas/master/water_use_index.html" />
+    <meta property="og:description" content="Using Facebook posts about Standing Rock to study the location spoofing issue." />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="css/fish_style.css">
+    <link rel="stylesheet" href="css/control-minimap.css" />
+    <link rel="stylesheet" href="css/ekko-lightbox.css"/>        
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata" />
+  
+	<link rel="shortcut icon" href="img/oregon.ico" type="image/x-icon">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/leaflet.ajax.min.js"></script>
+    <script src="js/storymap_fixed.js"></script>
+	<script src="js/ekko-lightbox.js"></script>
+	<script src="js/control-minimap.js" type="text/javascript"></script>
+	
+</head>
+<body>
+<!--<div class="navbar navbar-inverse navbar-fixed-top navbar-toggleable-md" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Fish</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=map_intro]').offset().top - $(window).scrollTop() - 40);">Intro</a>
+                </li>
+				<li>
+					<a href="javascript:window.scrollBy(0, $('section[data-scene=map_pipeline]').offset().top - $(window).scrollTop() - 40);">Pipeline</a>
+				</li>
+				<li>
+					<a href="javascript:window.scrollBy(0, $('section[data-scene=map_camp]').offset().top - $(window).scrollTop() - 40);">Protest</a>
+				</li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=support]').offset().top - $(window).scrollTop() - 40);">Check-in for support</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=map_curve]').offset().top - $(window).scrollTop() - 40);">Facebook Map</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=map_chart]').offset().top - $(window).scrollTop() - 40);">Data</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=chinook]').offset().top - $(window).scrollTop() - 40);">Chinook</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=coho]').offset().top - $(window).scrollTop() - 40);">Coho</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=chum]').offset().top - $(window).scrollTop() - 40);">Chum</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=sockeye]').offset().top - $(window).scrollTop() - 40);">Sockeye</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=lamprey]').offset().top - $(window).scrollTop() - 40);">Lamprey</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=sturgeon]').offset().top - $(window).scrollTop() - 40);">Sturgeon</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=hatcheries]').offset().top - $(window).scrollTop() - 40);">Hatcheries</a>
+                </li>
+                <li>
+                    <a href="javascript:window.scrollBy(0, $('section[data-scene=end]').offset().top - $(window).scrollTop() - 40);">End</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+     /.container 
+</div>-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 main">
+        
+            <section data-scene="overview">
+				 	<div class= "overview-background-img background-fullscreen-setting text-responsive">
+						<h4 class="text-center" style="font-size:120px; color:#5E5E5E;text-shadow: #5E5E5E 0.1em 0.1em 0.2em; position:absolute; left: 3%; top: 1px;">Standing #Rock</h4>
+						<br>
+						<h4 class ="text-center" style="font-size:30px; color: #5E5E5E; margin-left: 12%; text-align:justify; position:absolute; left: 10px; top: 180px;">
+							'Water is life'   'Mni wiconi'  'No DAPL'
+						</h4>
+						<br/><br/>
+						<p class ="text-center" style="font-size:18px; margin-top:0px; color: black; text-shadow: white 0.1em 0.1em 0.2em;display:block; position:absolute; right: 1%; bottom: 1%;">
+							Created by Yuanyuan Tian, Yingqi Tang, Majid @ Oregon State University
+						</p>
+					</div>
+                	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>                 
+            </section>
+
+			<section data-scene="checkin">
+				<div class= "checkin-background-img background-fullscreen-setting text-responsive">
+					<h4 class ="text-left" style="font-size:30px; color: white; text-align:justify; margin-top: 1%;position:absolute; left: 10px; top: 20px; " >
+						From xxxx-xxxx, over xxxx(A million) people 'check in' at Standing Rock on Facebook.
+					</h4>
+					<img src="img/StanddingRockFB.png" alt="Protest Camping" style="margin-top: 6%;margin-left: 2%;">
+				</div>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			</section>
+
+
+			<section data-scene="map_intro">
+                <h3>Standing Rock</h3>
+				<h5>Background</h5>
+				<p>
+					Itroduction of Standing Rock. this is a  jkjk dffjkj safjsdkljf s jlk d jlks sdsjl  sd ljlsda s sdkj f ksdj f as lj l fjlas d sd a sdf kd Rainbow Trout are the same species, but Steelhead are anadromous, meaning they spend some of theid Rainbow Trout are the same species, but Steelhead are anadromous, meaning they spend some of thei
+				</p>
+				<br/><br/>
+				<div class="leg"><p style ="font-weight: bold;">Legend</p>
+				<br/><i style="background: #006080; opacity: 0.8; margin-right: 8px;"></i><p>Water Resource</p><br/><i style="background: #606020; opacity: 0.8; margin-right: 8px;"></i><p>Sacred Site</p><br/>
+				</div>
+				<br/><br/><br/>
+			</section>
+
+			<section data-scene="map_pipeline">
+				<h3>Standing Rock</h3>
+				<h5>Pipeline</h5>
+				<p>
+					Itroduction of Standing Rock. this is a  jkjk dffjkj safjsdkljf s jlk d jlks sdsjl  sd ljlsda s sdkj f ksdj f as lj l fjlas d sd a sdf kd Rainbow Trout are the same species, but Steelhead are anadromous, meaning they spend some of theid Rainbow Trout are the same species, but Steelhead are anadromous, meaning they spend some of thei
+				</p>
+				<br/><br/>
+				<div class="leg"><p style ="font-weight: bold;">Legend</p>
+					<br/><i style="background: #006080; opacity: 0.8; margin-right: 8px;"></i><p>Water Resource</p>
+					<br/><i style="background: #606020; opacity: 0.8; margin-right: 8px;"></i><p>Sacred Site</p>
+					<br/><i style="background: orangered; opacity: 0.8; margin-right: 8px;"></i><p>pipeline</p><br/>
+				</div>
+				<br/><br/><br/>
+			</section>
+
+			<section data-scene="map_camp">
+				<h3>Standing Rock</h3>
+				<h5>Protest Camp</h5>
+				<p>
+					Itroduction of Standing Rock. this is a  jkjk dffjkj safjsdkljf s jlk d jlks sdsjl  sd ljlsda s sdkj f ksdj f as lj l fjlas d sd a sdf kd Rainbow Trout are the same species, but Steelhead are anadromous, meaning they spend some of theid Rainbow Trout are the same species, but Steelhead are anadromous, meaning they spend some of thei
+				</p>
+				<br/><br/>
+				<div class="leg"><p style ="font-weight: bold;">Legend</p>
+					<br/><i style="background: #006080; opacity: 0.8; margin-right: 8px;"></i><p>Water Resource</p>
+					<br/><i style="background: #606020; opacity: 0.8; margin-right: 8px;"></i><p>Sacred Site</p>
+					<br/><i style="background: orangered; opacity: 0.8; margin-right: 8px;"></i><p>pipeline</p>
+					<br/><i style="background: #B51E1E; opacity: 0.8; margin-right: 8px;"></i><p>camp</p>
+					<br/>
+				</div>
+				<video width="320" height="240" autoplay loop controls>
+					<source src="img/drone_cut.mp4" type="video/mp4">
+					Your browser does not support the video tag.
+				</video>
+				<br/><br/><br/>
+			</section>
+			
+			<section data-scene="support">
+                <h3>Check-in for support</h3>
+                <p>Steelhead and Rainbow Trout are the same species, but Steelhead are anadromous, meaning they spend some of their lives in the ocean. There are two main Steelhead runs, one in the Winter and one in the Summer. The Summer run spawns further inland, usually east of the Cascades. Steelhead can spawn multiple times.</p>
+				<br/><br/>
+				<!--<p style="font-size:14px; font-weight:bold;">Saltwater</p><p style="font-size:14px; font-weight:bold; display:inline; margin-left:120px;">Freshwater</p>
+				<br/>
+				<img src="img/steelhead_salt.jpg" width="170" height="64" style="display:inline;">
+				<img src="img/steelhead_fresh.jpg" width="170" height="64" style="display:inline;">
+				<br/><br/>
+				<div class="leg">
+				<p style ="font-weight: bold; line-height:20px;">Season</p><br/>
+				<p style = "display:inline; font-size: 13px;  line-height:10px;">Winter&nbsp Summer&nbsp Both</p>
+				<p style ="font-weight: bold; margin-left: 24px;  line-height:25px;">Habitat Extent</p>
+				<br/><i style="background: #72f3de; opacity: 0.8"></i><i style="background: #017461; opacity: 0.8"></i><i style="background: #00caa8; opacity: 0.8; margin-right: 8px;"></i><p>Current</p><br/><i style="background: #ff3333; opacity: 0.8;"></i><i style="background: #ff3333; opacity: 0.8"></i><i style="background: #ff3333; opacity: 0.8; margin-right: 8px;"></i><p>Historical</p><br/>
+				</div>
+				<br/><br/><br/>-->
+			</section>
+			
+			<section data-scene="map_curve">
+                <h3>Where are they?</h3>
+				<h5>When people check-in at #Standing rock,ND,<br/>are they really standing THERE?</h5>
+				<p>animation curve map + camps</p>
+				<br/><br/>
+				<!--<div class="leg"><p style ="font-weight: bold;">Habitat Extent</p>
+				<img src="img/redband.jpg" height="98" width="220" style="float: right;"><br/>
+					<i style="background: #B51E1E; opacity: 0.8; margin-right: 8px;"></i><p>camp</p><br/>
+					<i style="background: #67B8E0; opacity: 0.8; margin-right: 8px;"></i><p>change location</p><br/>
+				</div>-->
+				<br/><br/><br/>
+			</section>
+			
+			<section data-scene="map_chart">
+                <h3>Where are they?</h3>
+				<p>Map: heatmap?<br/>Charts: crossfilter, pi chart
+				</p>
+				<br/><br/>
+				<!--<div class="leg"><p style ="font-weight: bold;">Habitat Extent</p>
+				<img src="img/bulltrout.jpg" height="100" width="220" style="float: right;"><br/><i style="background: #00b093; opacity: 0.8; margin-right: 8px;"></i><p>Current</p><br/><i style="background: #ff3333; opacity: 0.8; margin-right: 8px;"></i><p>Historical</p><br/>
+				</div>-->
+				<br/><br/><br/>
+			</section>
+
+			<section data-scene="end">
+				<div class= "overview-background-img background-fullscreen-setting text-responsive">
+					<h4 style="font-size:120px; color:#5E5E5E;text-shadow: #5E5E5E 0.1em 0.1em 0.2em;
+					margin-left: 5%; margin-right: 60%; margin-top: 1%;text-align:justify; position:absolute; left: 1px; top: 2px; ">
+						Conclusion
+					</h4>
+					<br>
+					<p class ="text-center" style="font-size:30px; color: #5E5E5E; margin-left: 4%; margin-right: 20%;text-align:justify; position:absolute; left: 10px; top: 180px;">
+						Not physically there, <br/>
+						but using <b>social media</b> as a <b>projection</b> to standing there.<br/>
+						How people use social media geo-tag to show their support.<br/>
+						Location is not only where you are, <br/>
+						but also you can choose where to <b>stand</b>.
+					</p>
+					<br/><br/>
+					<p class ="text-center" style="font-size:18px; margin-top:0px; color: black; text-shadow: white 0.1em 0.1em 0.2em;display:block; position:absolute; right: 1%; bottom: 1%;">
+						Created by Yuanyuan Tian, Yingqi Tang, Majid @ Oregon State University
+					</p>
+				</div>
+				<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+			</section>
+
+        	
+        	<i class="animated zoomIn infinite glyphicon glyphicon-menu-down arrow-down"></i>
+
+        </div>
+        <div id="map" class="col-sm-6 col-md-8 sidebar"></div>
+    </div>
+    
+    <i class="fa fa-info-circle social" style="right:70px;" data-toggle="modal" data-target="#info-modal"></i>
+    
+	<a class="fa fa-facebook-square social2" style="right:55px;" href="https://facebook.com/sharer.php?u=http://rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html" target="_blank"></a>
+        
+    <a class="fa fa-twitter-square social3" style="right:40px;" href="https://twitter.com/home?status=Oregon's%20Groundwater%0Ahttp%3A//rawgit.com/cartobaldrica/water_atlas/master/infrastructure_index.html" target="_blank"></a>
+	
+	<a class="fa fa-github-square social3" style="right:25px;" href="https://github.com/cartobaldrica/water_atlas" target="_blank"></a>
+	
+   <ul class="navbar text-center"></ul>
+
+    
+    <div class="modal fade" id="info-modal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">About</h2>
+                </div>
+                <div class="modal-body">
+                    <p2>Cover photo by Sam Beebe/Ecotrust - retrieved from Wikimedia Commons</p2><br>                    
+                    <p2>End photo retrieved from Wikimedia Commons</p2><br>
+                    <p2 style="font-size:20px">Geographic Data</p2><br>
+                    <p2>Surface Source Areas: <a href = "http://spatialdata.oregonexplorer.info/geoportal/catalog/search/resource/details.page?uuid=%7BBD6FD933-A183-4A4C-8314-AF1FC4613CB7%7D" target="_blank">Oregon Department of Environmental Quality/Oregon Spatial Data Library</a></p2><br>
+                	<p2>Groundwater Source Areas: <a href = "http://spatialdata.oregonexplorer.info/geoportal/catalog/search/resource/details.page?uuid=%7B6A1EC8DD-8B68-4483-8CC5-01C57B6A2C27%7D" target="_blank">Oregon Department of Environmental Quality/Oregon Spatial Data Library</a></p2><br>
+                	<p2>Potential Contaminant Sources: <a href = "https://www.oregon.gov/deq/wq/programs/Pages/DWP-Maps.aspx" target="_blank">Oregon Department of Environmental Quality</a></p2><br>
+                	<p2 style="font-size:20px">Text Data</p2><br>
+                	<p2>Drinking water statistics and information: Oregon DEQ, Oregon Health Authority, Portland Water Bureau</p2>
+                </div>
+                <div class="modal-footer">
+                    <p2>Created with Leaflet</p>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+<script type="text/javascript">
+
+//	
+//<p style="text-align:left; font-weight:bold">Hover for source</p>'
+
+    var layers = {  
+          'map_curve' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:rainbow_redband',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'map_chart' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:bulltrout',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'coho' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:coho',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'chum' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:chum',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'sockeye' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:sockeye',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'lamprey' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:lamprey',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'support' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:steelhead',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'chinook' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:chinook',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'sturgeon' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:sturgeon',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+            'map_intro' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+              layers: 'baldricg_atlas:fish_barriers',
+              tiled: true,
+              format: 'image/png',
+              transparent: true,
+              maxZoom: 14,
+              minZoom: 6,
+              continuousWorld: true
+              })],
+			'map_pipeline' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+				layers: 'baldricg_atlas:fish_barriers',
+				tiled: true,
+				format: 'image/png',
+				transparent: true,
+				maxZoom: 14,
+				minZoom: 6,
+				continuousWorld: true
+			})],
+			'map_camp' : [L.tileLayer.wms('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms', {
+				layers: 'baldricg_atlas:fish_barriers',
+				tiled: true,
+				format: 'image/png',
+				transparent: true,
+				maxZoom: 14,
+				minZoom: 6,
+				continuousWorld: true
+			})],
+            'hatcheries' : [L.geoJson.ajax('http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=baldricg_atlas:hatcheries&maxFeatures=1000&outputFormat=application%2Fjson', {
+            	pointToLayer: function (feature, latlng) {
+    			return L.circleMarker(latlng, {
+    				color: '#ffffff',
+    				fillColor: '#00b093',
+    				radius: 4,
+    				opacity: 1,
+    				weight: 1,
+    				fillOpacity: 1
+    				}
+    					).bindTooltip(feature.properties.NAME, {className: 'label_tooltip'});
+    				}
+				})],
+    		
+    };
+
+    var scenes = {
+            overview: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Home',position: 'fullpage'},
+        	checkin: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'CheckIn',position: 'fullpage'},
+        	map_intro: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'MapIntro', layers:['map_intro']},
+			map_pipeline: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'MapPipeline', layers:['map_pipeline']},
+			map_camp: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'MapCamp', layers:['map_camp']},
+        	support: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'Support', layers:['support']},
+        	map_curve: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'MapCurve', layers:['map_curve']},
+        	map_chart: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'MapChart', layers:['map_chart']},
+            end: {lat: 44.1347254, lng:-122.7411479, zoom: 7, name: 'End', position:'fullpage'}
+    };
+    
+    
+
+    $('.main').storymap({
+        scenes: scenes,
+        layers:layers,
+        legend: false,
+        scale:false,
+        navbar: true,
+        createMap: function () {
+            // create a map in the "map" div, set the view to a given place and zoom
+                var map = L.map('map',{zoomControl:false, scrollWheelZoom:false}).setView([44.1347254, -122.7411479], 7);
+            // add an basemap, which can be either OSM, mapbox, tilelayer, wmslayer or those designed by yourself.
+           		/*L.tileLayer.wms("http://localhost:8080/geoserver/basemap/wms", {
+        			layers: 'basemap:basemap_dark',
+       				format: 'image/png',
+       				minZoom: 6,
+        			maxZoom: 15,
+        			transparent: true,
+        		attribution: "Created by Gareth Baldrica-Franklin"
+    			}).addTo(map);
+    			
+    			L.tileLayer.wms("http://localhost:8080/geoserver/basemap/wms", {
+        			layers: 'basemap:basemap_dark_labels',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 15,
+        			transparent: true,
+        			tiled: true, 
+        			tilesorigin: [-180, 90]
+    			}).addTo(map);
+    			*/
+    			
+    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+        			layers: 'baldricg_basemap:or_relief',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 10,
+        			opacity:0.2,
+        			transparent: true,
+    			}).addTo(map);
+    			
+    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+        			layers: 'baldricg_atlas:water_counties_2',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 10,
+        			opacity:0.2,
+        			transparent: true,
+    			}).addTo(map);
+    			
+    			var oregonWater = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+        			layers: 'baldricg_basemap:oregon_water',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 15,
+        			transparent: true,
+    			}).addTo(map);
+    			
+    			oregonWater.setOpacity(0.3);
+    			
+    			L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_basemap/wms", {
+        			layers: 'baldricg_basemap:states_light',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 10,
+        			opacity:0.5,
+        			transparent: true,
+    			}).addTo(map);
+    			
+    			var CartoDB_PositronOnlyLabels = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+					subdomains: 'abcd',
+					minZoom: 6,
+        			maxZoom: 15,
+					}).addTo(map);
+					
+				CartoDB_PositronOnlyLabels.setOpacity(0.6);
+    			
+    			var oregonCover = L.tileLayer.wms("http://mapious.ceoas.oregonstate.edu/geoserver/baldricg_atlas/wms", {
+        			layers: 'baldricg_atlas:oregon_cover_white',
+        			format: 'image/png',
+        			minZoom: 6,
+        			maxZoom: 15,
+        			transparent: true,
+    			}).addTo(map);
+    			
+    			oregonCover.setOpacity(0.4);
+			
+ 				
+ 				var mini = new L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+					subdomains: 'abcd',
+					maxZoom: 8,
+					minZoom: 5
+				});
+			    var currentZoom = 0;
+
+				
+				var miniMap = new L.Control.MiniMap(mini, { toggleDisplay: false});
+ 				
+				miniMap.addTo(map);
+			
+				new L.Control.Zoom({ position: 'bottomright'}).addTo(map);
+
+				/*if (scene == 'portland'){
+				miniMap;
+				}*/
+
+            return map;
+        }
+    });
+    
+    document.getElementsByClassName("leaflet-control-attribution")[0].style.visibility = "hidden";
+
+    
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+   		event.preventDefault();
+    $(this).ekkoLightbox();
+	});
+
+</script>
+</body>
+</html>
