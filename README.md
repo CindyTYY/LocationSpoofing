@@ -70,19 +70,7 @@ Instead, Standing Rock issue is a really new topic which occured in 2016, last y
 
 From the very beginning, our advisor suggested us to use twitter post as the data. We were trying to use hashtag like #NoDAPL #StandingRock to filter tweets. 
 
-![](pipeline_img/twitter1.png) 
-![](pipeline_img/twitter2.png)
-![](pipeline_img/twitter3.png)
-![](pipeline_img/twitter4.png)
-![](pipeline_img/twitter5.png)
-![](pipeline_img/twitter6.png)
-![](pipeline_img/twitter7.png)
-![](pipeline_img/twitter8.png)
-![](pipeline_img/twitter9.png)
-![](pipeline_img/twitter10.png)
-![](pipeline_img/twitter11.png)
-![](pipeline_img/twitter12.png)
-
+![](pipeline_img/twitter1.png) ![](pipeline_img/twitter2.png) ![](pipeline_img/twitter3.png) ![](pipeline_img/twitter4.png) ![](pipeline_img/twitter5.png) ![](pipeline_img/twitter6.png) ![](pipeline_img/twitter7.png) ![](pipeline_img/twitter8.png) ![](pipeline_img/twitter9.png) ![](pipeline_img/twitter10.png) ![](pipeline_img/twitter11.png) ![](pipeline_img/twitter12.png)
 
 Actually, it's not a good idea because if you look through those tweets you can not find something really related to location spoofing. Fortunately, one piece of news just came into my mind:
  
@@ -96,6 +84,7 @@ Then I search something like 'Standing Rock change location', it really works!
 ![](pipeline_img/facebook2.png)
 
 Common one:
+
 ![](pipeline_img/facebook3.png)
 
 Like the posts above, people are trying to post the same content and check-in at 'Standing Rock'. Check-in means when you want to post something on Facebook, you can choose where you are, as a geo-tag. The tricky thing is, users can CHOOSE, which means they can fake the place just by searchingand clicking the destination, then the flight is achieved. BTW, even if they are pasting and posting the same content, some people just click another place named 'Standing Rock Idian Reseration'. No worries, it will be explained in my next analysis of the filter.
