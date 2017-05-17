@@ -60,11 +60,24 @@ The MIT Media Lab Disobedience Award seeks to highlight effective, responsible, 
 
 ## What I am doing now:
 
-As you see, there are 2 cases worth studying.
+As you see, there are 2 cases worth studying:
+
 Occupying Tehran is definitely location spoofing, but it happened in 2009.
-Instead, Standing Rock issue is a really new topic which occured in 2016, last year. What's more, on Febrary 2017, the protest camping people are forced to leave Standing Rock area. Fortunatelly, they just set up a new camp in another city and calling people to join the camp. That's why it's becoming a hot topic again this month.
-From the very beginning, our advisor suggested us to use twitter post as the data. We were trying to use hashtag like #NoDAPL #StandingRock to filter tweets.
 
+Instead, Standing Rock issue is a really new topic which occured in 2016, last year. What's more, on Febrary 2017, the protest camping people are forced to leave Standing Rock area. As a reaction, they just set up a new camp in another city and calling people to join the camp. That's why it's becoming a *hot topic* again this month.
 
+From the very beginning, our advisor suggested us to use twitter post as the data. We were trying to use hashtag like #NoDAPL #StandingRock to filter tweets. Actually, it's not a good idea because if you look through those tweets you can not find something really related to location spoofing. Fortunately, one piece of news just came into my mind:
+ 
+[A million people 'check in' at Standing Rock on Facebook to support Dakota pipeline protestersd](https://www.theguardian.com/us-news/2016/oct/31/north-dakota-access-pipeline-protest-mass-facebook-check-in/) 
+
+Check-in sounds like a good idea, uh? 
+
+Then I search something like 'Standing Rock change location', it really works!
 
 ![](img/tehran.png)
+
+Like the posts above, people are trying to post the same content and check-in at 'Standing Rock'. Check-in means when you want to post something on Facebook, you can choose where you are, as a geo-tag. The tricky thing is, users can CHOOSE, which means they can fake the place just by searchingand clicking the destination, then the flight is achieved. BTW, even if they are pasting and posting the same content, some people just click another place named 'Standing Rock Idian Reseration'. No worries, it will be explained in my next analysis of the filter.
+
+
+
+
