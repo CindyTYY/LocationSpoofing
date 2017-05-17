@@ -95,6 +95,9 @@ Then I search something like 'Standing Rock change location', it really works!
 ![](pipeline_img/facebook1.png)
 ![](pipeline_img/facebook2.png)
 
+Common one:
+![](pipeline_img/facebook3.png)
+
 Like the posts above, people are trying to post the same content and check-in at 'Standing Rock'. Check-in means when you want to post something on Facebook, you can choose where you are, as a geo-tag. The tricky thing is, users can CHOOSE, which means they can fake the place just by searchingand clicking the destination, then the flight is achieved. BTW, even if they are pasting and posting the same content, some people just click another place named 'Standing Rock Idian Reseration'. No worries, it will be explained in my next analysis of the filter.
 
 
