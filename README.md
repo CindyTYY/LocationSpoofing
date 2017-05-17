@@ -1,6 +1,6 @@
-# Stortymap: Standing #Rock
+# Stortymap:[Standing #Rock](https://cdn.rawgit.com/CindyTYY/LocationSpoofing/c6ba6d70/LocationSpoofing_index.html)
 
-## Yuanyuan's Documendation:
+## 1. Yuanyuan's Documendation:
 
 2017.05.16 initial storymap
 
@@ -8,7 +8,7 @@
 
 
 
-## Location Spoofing - A Disobedient Geographical Practice for the Benefit of Society
+## 2. Location Spoofing - A Disobedient Geographical Practice for the Benefit of Society
 
 **Advisor: Bo Zhao**
 
@@ -58,7 +58,7 @@ With this award, we honor work that impacts society in positive ways, and is con
 
 The MIT Media Lab Disobedience Award seeks to highlight effective, responsible, ethical disobedience across disciplines, and around the world. Disobedience Award objectives are to build awareness and support of disobedience-robust work being done, and to promote role models for younger people.
 
-## What I am doing now:
+## 3. What I am doing now:
 
 As you see, there are 2 cases worth studying:
 
