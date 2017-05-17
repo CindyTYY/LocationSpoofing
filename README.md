@@ -82,6 +82,8 @@ From the very beginning, our advisor suggested us to use twitter post as the dat
 ![](pipeline_img/twitter10.png)
 ![](pipeline_img/twitter11.png)
 ![](pipeline_img/twitter12.png)
+
+
 Actually, it's not a good idea because if you look through those tweets you can not find something really related to location spoofing. Fortunately, one piece of news just came into my mind:
  
 [A million people 'check in' at Standing Rock on Facebook to support Dakota pipeline protestersd](https://www.theguardian.com/us-news/2016/oct/31/north-dakota-access-pipeline-protest-mass-facebook-check-in/) 
