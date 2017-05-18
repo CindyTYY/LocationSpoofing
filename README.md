@@ -65,8 +65,8 @@ As you see, there are 2 cases worth studying:
 Occupying Tehran is definitely location spoofing, but it happened in 2009.
 
 Instead, Standing Rock issue is a really new topic which occured in 2016, last year. What's more, on Febrary 2017, the protest camping people are forced to leave Standing Rock area. As a reaction, they just set up a new camp in another city and calling people to join the camp. That's why it's becoming a **hot topic** again this month.
-![](pipeline_img/camp5.png) 
-![](pipeline_img/people5.png) 
+![](pipeline_img/camp5.jpg) 
+![](pipeline_img/people5.jpg) 
 
 From the very beginning, our advisor suggested us to use twitter post as the data. We were trying to use hashtag like #NoDAPL #StandingRock to filter tweets. 
 
